@@ -1,9 +1,6 @@
 package ru.skillbox.currency.exchange.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Currency {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence")
@@ -30,5 +28,8 @@ public class Currency {
 
     @Column(name = "iso_num_code")
     private Long isoNumCode;
+
+    @Column(name="iso_char_code")
+    private String isoCharCode;
 
 }

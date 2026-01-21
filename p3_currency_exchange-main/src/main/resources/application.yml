@@ -21,3 +21,7 @@ spring:
         hbm2ddl:
           auto: none
 
+app:
+  currency:
+    cbr-url: "https://www.cbr.ru/scripts/XML_daily.asp"
+    update-cron: "0 0 * * * *"
