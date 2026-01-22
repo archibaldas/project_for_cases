@@ -8,6 +8,7 @@
 - Lombok
 - Mapstruct
 - Liquibase
+- JAXB
 - PostgreSQL
 
 ## Требования
@@ -33,6 +34,8 @@
 docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=postgres -d postgres
 ```
 
+
+
 Пользователь для подключения к контейнеру `postgres`.
 
 ### IntelliJ IDEA
@@ -53,6 +56,19 @@ curl --request POST \
   "value": 32.2,
   "isoNumCode": 1337
 }'
+```
+Обновление курсов валют из ЦБ
+
+```bash
+curl --request GET \
+     --url ttp://localhost:8080/api/currency/update
+```
+
+Получение списка валют
+
+```bash
+curl --request GET \
+     --url ttp://localhost:8080/api/currency/
 ```
 
 Получение Валюты по id

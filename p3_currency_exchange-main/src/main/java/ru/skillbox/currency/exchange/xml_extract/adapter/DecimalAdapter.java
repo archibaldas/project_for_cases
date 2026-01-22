@@ -5,12 +5,12 @@ import java.math.BigDecimal;
 
 public class DecimalAdapter extends XmlAdapter<String, BigDecimal> {
     @Override
-    public BigDecimal unmarshal(String s) throws Exception {
+    public BigDecimal unmarshal(String s){
         return new BigDecimal(s.replace(",", "."));
     }
 
     @Override
-    public String marshal(BigDecimal bigDecimal) throws Exception {
+    public String marshal(BigDecimal bigDecimal){
         return bigDecimal.toString().replace(".", ",");
     }
 }

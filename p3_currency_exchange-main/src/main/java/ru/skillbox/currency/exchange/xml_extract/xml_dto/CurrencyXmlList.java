@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @XmlRootElement(name = "ValCurs")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ValCurs {
+public class CurrencyXmlList {
     @XmlAttribute(name = "Date")
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate date;
@@ -20,5 +20,5 @@ public class ValCurs {
     private String name;
 
     @XmlElement(name = "Valute")
-    private List<Valute> valutes;
+    private List<CurrencyXml> valutes;
 }

@@ -5,25 +5,22 @@ import ru.skillbox.currency.exchange.xml_extract.adapter.DecimalAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.math.BigDecimal;
 
 @Data
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Valute {
-    @XmlAttribute(name ="ID")
-    private String id;
+public class CurrencyXml {
 
     @XmlElement(name = "NumCode")
-    private String numCode;
+    private Long isoNumCode;
 
     @XmlElement(name = "CharCode")
-    private String charCode;
+    private String isoCharCode;
 
     @XmlElement(name = "Nominal")
-    private int nominal;
+    private Long nominal;
 
     @XmlElement(name = "Name")
     private String name;

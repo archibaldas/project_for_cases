@@ -11,5 +11,4 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 public class CurrencyConfig {
     private String cbrUrl;
-    private String updateCron;
 }
