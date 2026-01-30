@@ -45,7 +45,7 @@ public class SubscribeCommand implements IBotCommand {
             answer.setText("Новая подписка создана на стоимость " + TextUtil.toString(price) + " USD");
 
         } catch (Exception e) {
-            log.error("Not price value");
+            log.error("Subscriber with id: {} das not enter price", message.getFrom().getId());
             answer.setText("""
                     Не введен желаемый курс, пожалуйста введите команду в формате: 
                      /subscribe [число].
@@ -55,6 +55,7 @@ public class SubscribeCommand implements IBotCommand {
 
         try {
             absSender.execute(answer);
+            log.info("Subscriber with id: {} subscribed to notification", message.getFrom().getId());
         } catch (TelegramApiException e) {
             log.error("Error occurred in /start command", e);
         }

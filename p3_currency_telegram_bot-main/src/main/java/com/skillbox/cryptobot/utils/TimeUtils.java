@@ -18,10 +18,10 @@ import static java.time.LocalDateTime.now;
 @NoArgsConstructor
 public class TimeUtils {
 
-    private static int value = 10;
-    private static ChronoUnit unit = ChronoUnit.MINUTES;
+    private int value = 10;
+    private ChronoUnit unit = ChronoUnit.MINUTES;
 
-    public static LocalDateTime getLimitTime(){
+    public LocalDateTime getLimitTime(){
         return now().minus(value, unit);
     }
 

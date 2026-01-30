@@ -6,7 +6,7 @@ telegram:
     token: ${BOT_TOKEN}
     notify:
       delay:
-        value: 10
+        value: 2
         unit: MINUTES
       update-cron: "0 */2 * * * *"
 

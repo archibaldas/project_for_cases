@@ -44,6 +44,7 @@ public class UnsubscribeCommand implements IBotCommand {
         }
         try {
             absSender.execute(answer);
+            log.info("Subscriber with id: {} unsubscribed", message.getFrom().getId());
         } catch (TelegramApiException e) {
             log.error("Error occurred in /start command", e);
         }
