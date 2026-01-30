@@ -1,0 +1,30 @@
+telegram:
+  bot:
+#    не вписывайте данные, так как можете отправить в публичный репозиторий
+#    используйте переменные среды для установки значений
+    username: ${BOT_NAME}
+    token: ${BOT_TOKEN}
+    notify:
+      delay:
+        value: 10
+        unit: MINUTES
+      update-cron: "0 */2 * * * *"
+
+binance:
+  api:
+    getPrice: https://api.binance.com/api/v3/avgPrice?symbol=BTCUSDT
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      show-sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog.yml
+    drop-first: false
