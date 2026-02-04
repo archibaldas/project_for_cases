@@ -4,4 +4,5 @@ currency:
 cost:
   rub:
     perKg: 400
+    perM3: 5000
     minimal: 350

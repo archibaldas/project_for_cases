@@ -33,7 +33,7 @@ class CalculateControllerTest extends ControllerTest {
     @DisplayName("Валидные данные для расчета стоимость -> Ответ 200")
     void whenValidInputData_thenReturn200() {
         var request = new CalculatePackagesRequest(
-                List.of(new CargoPackage(BigInteger.TEN)), "RUB");
+                List.of(new CargoPackage(BigInteger.TEN, 24, 20, 30)), "RUB");
         var rub = new CurrencyFactory(code -> true).create("RUB");
         when(useCase.calc(any())).thenReturn(new Price(BigDecimal.valueOf(10), rub));
         when(useCase.minimalPrice()).thenReturn(new Price(BigDecimal.valueOf(5), rub));
@@ -48,6 +48,36 @@ class CalculateControllerTest extends ControllerTest {
     @DisplayName("Список упаковок == null -> Ответ 400")
     void whenEmptyListPackages_thenReturn400() {
         var request = new CalculatePackagesRequest(null, "RUB");
+
+        ResponseEntity<String> response = restTemplate.postForEntity(baseCalculateApi, request, String.class);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Длинна упаковки < 0 -> Ответ 400")
+    void whenLengthIsNegative_thenReturn400() {
+        var request = new CalculatePackagesRequest(
+                List.of(new CargoPackage(BigInteger.TEN, -1, 10, 30)),"RUB");
+
+        var rub = new CurrencyFactory(code -> true).create("RUB");
+        when(useCase.calc(any())).thenReturn(new Price(BigDecimal.valueOf(10), rub));
+        when(useCase.minimalPrice()).thenReturn(new Price(BigDecimal.valueOf(5), rub));
+
+        ResponseEntity<String> response = restTemplate.postForEntity(baseCalculateApi, request, String.class);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+    @Test
+    @DisplayName("Ширина упаковки > 1500мм -> Ответ 400")
+    void whenWidthIsMore1500mm_thenReturn400(){
+        var request = new CalculatePackagesRequest(
+                List.of(new CargoPackage(BigInteger.TEN, 20, 1501, 30)),"RUB");
+
+        var rub = new CurrencyFactory(code -> true).create("RUB");
+        when(useCase.calc(any())).thenReturn(new Price(BigDecimal.valueOf(10), rub));
+        when(useCase.minimalPrice()).thenReturn(new Price(BigDecimal.valueOf(5), rub));
 
         ResponseEntity<String> response = restTemplate.postForEntity(baseCalculateApi, request, String.class);
 
